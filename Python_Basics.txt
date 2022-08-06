@@ -1,0 +1,959 @@
+#///////////////////////////////////////////
+#// Lecture: Python basics
+#///////////////////////////////////////////
+
+#// You can print the output of some value with print()
+#// Inside the () you can add the value you want to show
+
+#// A string a basically a text, you can set the data type as a String with "" or '', inside the quotation goes the text value
+#// If you need to use multiple line, use the triple quotes """text goes here"""
+
+#// Anaconda allow us to create virtual Python environments
+#// On Anaconda Terminal the (), is the current environment
+#// base is the default environment
+
+#// To create a new environment use the syntax: conda create --name name_of_environment python=3.7
+#// This python=3.7 is the selected version for the environment
+
+#// To see all the environments created use the command: conda env list
+
+#// To remove an environment use the command: conda remove --name name_of_environment --all
+#// The --all will remove everything from the environment
+
+#// To change the current environment use the command: conda activate name_of_environment
+#// OBS: The conda prefix waas necessary to run the command on Linux
+
+#// You can add comments to your code with # (only one line) or """triple quotes""" (for multiple lines)
+#// Comments are not executed by the proggram, is only for humans to read and better understand the code
+
+#// Module is a file containing Python code
+#// Packages are some directories that contains more packages and modules
+#// A library is third-party module
+
+#// If the project gets bigger, it is common to add the similar modules in the same package
+
+#// To use a package and modules: 
+    import name_of_package/module 
+    from ... import ... (is used to import a specific function inside a module)
+
+#// You can change the name of a module/package with: import ... as ...
+
+#// Variable is like a box that store a certain type of data
+#// To create a Variable do this: name_of_variable = value_of_variable
+#
+#// Naming conventions
+#// Variables should have a combination of letters in lowercase (a-z), uppercase (A-Z), numbers (0-9) #and underscore
+#// Create a name that makes sense, to the type of data stored
+#// You can use _ to separate words when there is space between them: lots_of_words
+#// Don't start the name with numbers
+#// The names cannot be the Python keywords
+#
+#// Keywords are reserved python words
+#
+#// If you need to know all the Keywords in Python, first you need to import the keyword module adn #then with keyword.kwlist you can get the list of all keywords
+#// Or you can use the help("keywords") syntax
+#
+#// You can switch the values between Variables, to do this follow the steps bellow:
+#    a, b = b, a
+#
+#// Python reads the code line by line, from top to bottom
+#
+#// You need to use indentation to make your code cleaner
+#
+#// Global and local variables
+#// Global Variables are Variables declared in the global scope, meaning that they can be accessed #anywhere
+#// Local Varibles are declared within a local scope, and they cannot be accessed outside that scope, #only within or bellow the scope
+#
+#// Standard I/O (Input/Output)
+#
+#// You can add an Input with the input() function
+#// You can show a value with print()
+#
+#// Built-in Methods
+#
+#// help() Method will display the docs of modules, packages, classes, etc
+#    help(print)
+#
+#// id() will return the identity of an object. This identity is unique and constant, meaning that #cannot be changed
+#
+#// type() function will return the type of the object
+#
+#// del() function will delete an object
+#
+#// len() function will return the number of items (length) of an object
+#
+#///////////////////////////////////////////
+#// Lecture: Python Data Types
+#///////////////////////////////////////////
+#// Python supports:
+#    Numeric: int, float, complex
+#    Text: str (strings = text)
+#    Sequence: list, tuple, range
+#    Mapping: dict
+#    Set: set, frozenset
+#    Boolean: bool
+#    Binary: bytes, bytearray, memoryview
+#
+#// Integers is an entire number, with no decimal points, and it can be of any length. E.g: 10 50 100
+#// Floats are numbers with decimal points, a float is precise until it has 15 decimal places, if it #has 16 decimal places, the float is unprecise. E.g: 1.5 10.0 0.25 
+#// Complex numbers are basically equations, its written in the form x + yj, where x is the real #number and y is the imaginary part
+#
+#// String is a sequence of characters that compose a text, its in Unicode character. Unicode was #introduced to include every character in all languages an bring uniformity in encoding.
+#// A string a basically a text, you can set the data type as a String with "" or '', inside the #quotation goes the text value
+#// If you need to use multiple line, use the triple quotes """text goes here"""
+#
+#// You can insert illegal characters in a string using an escape character. To create an escape #character, use a backslash \ followed by the character you want to insert.
+#// /n creates a new line
+#
+#// You can create an raw string to ignore the scape sequence inside a string. To do that simply put a #r or R before the string. E.g: r"This is a raw string"
+#
+#// You can access a character in a String, you can do this by using the index of the string (value #starts from 0). The index must be a integer, and if you select an index outside the range, an error #will occur. To select the index use the [Number_Of_Index]
+#// Using negative index will make the selection start from the end of the string
+#
+#// Use Slicing to select a range of characters on a String. To use slicing, you need the sintax #[startIndex:EndIndex], the EndIndex is NOT included on the final result
+#// This sintax [startIndex:EndIndex:IncrementValue], the IncrementValue means that the only values #that the slicing will get will be those who are in the same place as the increment value. E.g: onetwo #[1:4:2] === oe
+#
+#// You cannot change a value of a character inside a String
+
+# Strings
+print("Hello World")
+print("Hello World")
+# Triple quotes allows the string to span multiple line
+print(
+    """Hellooooooo
+
+
+World"""
+)
+
+# This is a comment
+
+# Import modules and packages
+import os
+from typing import Counter, Tuple  # import os module
+
+os.getcwd()  # getting the function inside os
+
+from os import getcwd  # getting getcwd Function directly from os
+
+getcwd()
+
+import platform as pf  # This will change the name of platform to pf
+
+pf.platform()
+
+# Variables
+a = 1
+print("Before change", a)
+
+a = 2
+print("After change", a)
+
+# Naming conventions
+aA9_ = 0
+
+wasd = 100  # This is bad
+price = 100  # This is good
+
+# keywords
+import keyword
+
+keyword.kwlist
+
+help("keywords")
+
+a = 1
+b = 2
+print(a)
+print(b)
+
+print("Swicth values between a and b")
+a, b = b, a
+print(a)
+print(b)
+
+# Execution order
+x = 0
+# print(x+y) # y is not created yet
+y = 1
+
+# Indentation
+def func1():
+    a = 1
+    b = 1
+
+
+def func2():
+    a = 2
+    b = 2
+
+
+# Global Variables and Local Variables
+a = 1  # Global Variablet
+
+
+def func():  # define a fuction
+    f = 2  # Local Variable
+
+
+c = 3
+print("Global Variables", a + c)
+
+# print("Local Variables", f)
+
+# Standard I/O (Input/Output)
+s = input("input: ")
+print("The input was: ", s)
+
+# Built-in Methods
+# help(print)
+
+a = 1
+print(id(a))
+type(a)
+del a
+# print(a)
+
+print(len("Hello"))
+
+# Data types
+
+# Numbers
+a = 5
+print(type(a))
+
+a = 5.0
+print(type(a))
+
+a = 5 + 6j
+print(a + 6)
+print(a + 25 + 50j)
+print(type(a))
+
+# Strings
+s1 = "this is my text"
+print(s1)
+print(type(s1))
+
+# Escape Sequence
+s = 'pynthon"'
+print(s)
+
+s = "pynthon\\"
+print(s)
+
+s = "py\nthon"
+print(s)
+
+# Raw String
+s = r"C:\abc\def\ghi.txt"
+print(s)
+
+# Using String Index
+s = "Python"
+print(s[0])  # Letter P
+
+print(s[1])  # Letter y
+
+print(s[-1])  # Letter n
+
+# print(s[99])  # Doesn't exist === error
+
+print(s[0:3])
+
+print(s[0:4:2])
+
+# s[0] = "1" <-- You CANNOT do this
+
+## String Operations
+
+# + Operator
+a = "Hello"
+b = "World"
+print(a + b)
+
+# * Operator
+a = "Hello"
+b = 2
+print(a * b)  # The * will multiply the string 2 times
+
+# String Methods
+# Split
+s = "Python is cool"
+s.split(" ")  # This will split (Devide) a String based on a devidor (character)
+
+# Replace
+s.replace("py", "abc")
+
+# Lower and Upper
+s = "PYthon"
+print(s.lower())
+print(s.upper())
+
+# Join
+print(
+    "--".join(
+        ["python", "is", "cool"]
+    )  # This will pput the Strings together, but they will be separated by another String
+)
+
+# Placeholder
+print("My name is %s , age is %d" % ("AI", 63))
+# The %s is a placeholder for a String, and the %d is a placeholder for a decimal number
+# To change the text in the placeholder, use the %("string", number) syntax
+
+## Lists
+# List/Arrays is used to store a lot of a same type of data, and these values inside a Array can be changed
+# Syntax of creating a List: list = [obj1, obj2, ...]
+array = [1, 2, 3]  # Create a list
+print(array)
+
+# You can acess an item in the array by using the index
+print(array[1])
+print(array[0:2])
+print(array[0:3:2])
+
+# Change values inside array
+array[1] = 50
+print(array)
+
+# The Operations on arrays works the same way as in Strings
+a = [1, 2, 3]
+b = [4, 5]
+# * Operator
+print(a * 2)
+# + Operator
+print(a + b)
+
+########## List/Arrays Methods
+animals = ["cat", "dog", "bird"]
+
+# list.append(obj): add 1 item to the end of the array
+animals.append("fish")
+print(animals)
+
+# list.remove(obj): delete one or more items from the array
+animals.remove("fish")
+print(animals)
+
+# list.insert(index, obj): add an item at the defined index
+animals.insert(1, "fish")
+print(animals)
+
+# list.pop([index=-1]): removes and returns the last item in the array, if an index is not provided
+print(animals.pop())
+print(animals)
+
+# enumerate(sequence): adds counter to an iterable and returns it
+for i, x in enumerate(animals):
+    print(i, x)
+
+# list.sort(cmp=none, key=none, reverse=false): sorts the elements of an array
+list1 = [12, 45, 32, 55]
+list1.sort()
+print(list1)
+
+# list.reverse(): will reverse the elements of an array
+list1.reverse()
+print(list1)
+
+# List Comprehension
+squares = [x * 2 for x in animals]  # creates an list based on an existing list
+# The x is the items inside animals array, and you're going to multilpy that value of x for 2
+print(squares)
+
+# You can create an List inside of an List
+list2 = [[1, 3], [4, 5]]
+print(
+    list2[1][0]
+)  # The first index in related to the list that is going to select, and the second is about the item inside the inner list
+
+# List slicing works the same way as in Strings
+
+###### Tuples
+# Tuples are unchangeable (can't change values) sequence, and they are used to store either the same data type or different data type
+# To create a Tuple use the ()
+t = (1, [1, 2], "python")
+print(t)
+print(type(t))
+
+# You can create an Tuple with one item, but you need to put a comma
+t1 = (5,)
+print(type(t1))
+
+# The indexing in Tuples work the same way as in Strings and Arrays
+t = (1, 2, 3)
+print(t[1])
+
+######### Dictionaries/Objects
+# Dictionaries are an unordered collection of items. Each item has a key:value pair. The keys are unique and can be overwritten by another key of the same name. They cannot be duplicated, but their values can be changed. And if a key doesn't exist, you'll get an error
+# {} will create an empty dictionary
+# There are 3 ways of creating an dictionary
+x = {"food": "Spam", "quantity": 4, "color": "pink"}
+x2 = dict(food="Spam", quantity=4, color="pink")
+x3 = dict([("food", "Spam"), ("quantity", 4), ("color", "pink")])
+print(x)
+print(x2)
+print(x3)
+
+# To access the items in a dictionary, you the key as an index
+print(x["food"])
+
+# You can use the dict.get(key,["value to return when akey doesn't exists"]) Method to avoid an error when accessing an key that doesn't exist. by default, it will return none if a key doesn't exists
+print(x.get("food"))
+print(x.get("a"))
+print(x.get("a", "This key doesn't exists"))
+
+# extract all the keys
+print(x.keys())
+
+# extract all the values
+print(x.values())
+
+# extract all the key:values pairs
+print(x.items())
+
+# To add an item to the dictionary, simply put the new value to the new key index
+x["new_key"] = 1000
+print(x)
+
+# To change the value of a key, just assing the new value to an existing key
+x["new_key"] = "I Like red"
+print(x)
+
+######### Sets
+# Sets are an unordered collection, but with no duplicated elements, they are all unique. A Set can support mathematical operations
+# You can create an Set with {} or the set() Method, but if you want to create an empty Set, you can only use the set() with no value inside
+sample_set = {"Prince", "Techs"}
+sample_set2 = set(["Prince", "Techs"])
+print(sample_set)
+print(sample_set2)
+
+# Use the in Keyword to check if an element exist in the Set, it will return a Boolean
+print("Data" in sample_set)
+print("Techs" in sample_set)
+
+# set.add(obj): adds a given element to a set, if the element already exists, then nothing is going to happen
+sample_set.add("Data")
+print(sample_set)
+print(len(sample_set))
+
+# set.remove(obj): removes an element from a set
+sample_set.remove("Data")
+print(sample_set)
+
+# You can use an Set to remove a duplicated item from another object
+list3 = [1, 3, 1, 5, 3]
+print(list(set(list3)))
+
+# If there's need, you can create an unchangeable set with fronzenset(obj) Method
+sample_set = frozenset(sample_set)  # unchangeable set
+# sample_set.add("cat")
+
+########### Operations on Data
+# REMEMBER: Assignment Statements do not create a copy of an object, it simply create a link between the target and an object.
+a = [1, 2, 3, [4, 5]]
+b = a  # assign a to b
+b[0] = 99
+print(a)  # a and b are poiting to the same place
+
+### Shallow Copy
+# A Shallow Copy only copies the first scope of values on the object, meaning that is the object have another nested object, that nested object will no be copied, hendeforth this nested object will only be assign in the copy, making it able to change the value of the original object.
+# Basically the shallow copy will only copy the first layer of the element
+# obj.copy() Method will create a shallow copy of that object
+a = [1, 2, 3, [4, 5]]
+b = a.copy()  # shallow copy
+b[0] = 99
+print(a)
+
+# Changing value of a nested object in a shallow copy
+b[3][0] = 99
+print(a)
+
+# A memory address is an ID that points to where an object is stored
+
+### Deep Copy
+# The deep copy will make a copy of an entire object, without letting a memory address, the object that was copied and the object that copied will be completelly separated from each other, and they cannot modifie each other
+
+import copy  # To use the deepcopy you need to import the copy namespace
+
+a = [1, 2, 3, [4, 5]]
+b = copy.deepcopy(
+    a
+)  # copy.deepcopy(obj) will copy everything from the object inside the ()
+b[3][0] = 99
+print(a)
+
+###### Operators
+## Assignment operators
+a = 5
+
+a += 1  # a = a + 1
+print("a+=1: ", a)
+
+a -= 1
+print("a-=1: ", a)
+
+a *= 2
+print("a*=2: ", a)
+
+a /= 2
+print("a/=2: ", a)
+
+## Comparison operators
+print(1 >= 2)  # greater or equal than
+print(1 <= 2)  # smaller or equal than
+print(1 != 2)  # different (Not equal)
+print(1 == 2)  # equal
+
+# Logical operators
+True and False  # The and will only return true if the 2 values it's comparing it's true
+True or False  # The or will return true if at least one of the values that is comparing is true
+not True  # The not keyword will invert the value of a boolean. If a value is equal to False than the not keyword is going to return True and vice-versa
+
+# Membership operators
+# They are used to check whether the element exists in a object or not
+a = [1, 2, 3]
+print(1 in a)  # The in keyword is used to check if an Item exists in an object
+
+print(
+    4 not in a
+)  # The not in keyword is used to check if an item DOESN'T exists in an object
+
+# Identity operators are used to determine if 2 objects are the same
+a = [1, 2]
+b = a
+c = a.copy()
+
+print(a is b)  # The is Keyword is the identity operator
+print(a is c)
+print(a == b == c)  # This is checking the value of a,b and c
+
+########################
+### Control Flow Statement
+# The control Flow is the execution order of the program
+# There are 3 common control flow: Sequential Structure, Branch Structure, Loop Structure
+
+## Conditional Statement is a feature that decides what action to perform based on a boolean condition that evaluates in either true or false
+# Use the if-elif-else statement to create a conditional statement (elif === Else if)
+
+## Loops are used to repeat an action until it becomes false
+# There are 3 ways to create a loop: While Loop, For Loop, Nested Loop. Their syntax and condition change, but they work on a similar way
+
+### The If statement is used for conditional execution. If a condition is true then the code that is inside the if Block will be executed, but if the condition is not true then it will go to the next condition that can either be an elif, where you can add a new condition, or an else statement, in which it will execute if all the conditions before were False
+
+print("#############################################")
+print("If Statement")
+
+score = input("Please enter a score: ")
+print(type(score))
+score = float(
+    score
+)  # The float(obj) Method will transform a string into a float/decimal number
+"""
+if 100 >= score <= 60:
+    print("A")
+else:
+    print("F")
+"""
+
+#### Using elif
+if 100 >= score >= 90:
+    print("A")
+elif 90 > score >= 80:
+    print("B")
+elif 80 > score >= 60:
+    print("C")
+elif 60 > score >= 0:
+    print("F")
+else:
+    print("Please enter a correct score")
+
+# The values 0 and none are False, and everything else is True
+if 0:
+    print("F")
+if 1:
+    print("T")
+if "python":
+    print("Python")
+if None:
+    print("None")
+
+#### While Loop
+# The while loop will run a code for as long as the condition of that loop is true. You can add an else statement after the while loop, and the code inside of it will be executed after the while loop ends
+i = 0
+while i < 9:
+    i += 1
+    print(i)
+else:
+    print("Loop ends")
+
+# If you add the continue Keyword, the rest of the code after the continue will not execute, and it will go back to the testing expression/condition of the while loop
+i = 0
+while i < 9:
+    i += 1
+    if i == 3:
+        print("Skip this loop")
+        continue
+    print(i)
+else:
+    print("Loop ends")
+
+# With the break Keyword, the loop will be terminates (it will end), also it will not execute the code of the else statement
+i = 0
+while i < 9:
+    i += 1
+    if i == 5:
+        print("Terminates the loop")
+        break
+    print(i)
+else:
+    print("Loop ends")
+
+##### For Loop
+# The for loop/Statement is used to iterate over elements of a sequence (execute a code for each element of a sequence)
+times = ["First", "Second", "Third"]
+for i in times:
+    print(i)  # The i is each individual element of this sequence
+# You can add an else statement after the for loop, and the code inside of it will be executed after the for loop ends
+else:
+    print("For loop ended")
+
+# Nested Loops
+# You can nest loop inside one another
+# E.g: Write a multiplication table
+for i in range(1, 10):  # an outer loop
+    for j in range(1, i + 1):  # an inner loop
+        # String formatting
+        print("%dX%d=%-2d" % (j, i, j * i), end=" ")
+    print()
+# The range(start, end) Method will give us the number from the start and before the end (it exclude the end)
+
+###############################
+#### Functions
+# Function is a block of reusable code, that can only run if the Function is called. You can pass data into a function as paramenters. And also, a Function can return data as an output.
+# To create a Function, use the def keyword, than the name of the function followed by ()
+def myFunction(a, b):
+    c = a * b
+    c += 1
+    return c  # The return Keyword will return a Value from a Function, meaning that that function in the end will be that returned value
+
+
+print(myFunction(10, 10))
+
+# A Higer-Order Function is a Function that return another Function, or have another Function as a parameter.
+# Apart from High-Order Functions, all other Functions are first-level Functions
+
+# Anonymous Fuctions are Function that doesn't have a name/identifier. These type of Functions are often passed as arguments to a Higher-Order Function or used for constructing the result of a Higher-Order Function that needs to return a Function
+# They can have any amount of arguments, but they can only have one expression
+# To create an Anonymous Function, use the lambda Statement
+
+# You can either create a function with def or lambda statement
+def func():
+    print("Hello")
+    print("World")
+
+
+func()  # To call a function, just write the function name followed by ()
+
+# The data passed into a Function is called arguments
+#### The arguments can be of type:
+
+# Default arguments (are no mandatory to be passed in a function, because they are already defined in the parameters, and if no arguments are passed, the default values in the parameters will be used)
+def f(a=128, b=2, *args, **kwargs):  # This are the default arguments
+    print("a: %d" % (a))
+    print("b: %d" % (b))
+    print("args:", args)
+    for key, value in kwargs.items():
+        print("%s is %s" % (key, value))
+    print()
+
+
+f()
+
+# Positional arguments, are called by their position in the function parameters
+f(0, 4)  # a = 0, b = 4 or f(a,b)
+
+# Keyword arguments, are arguments that can be called/defined by their name and it doesn't matter their position
+f(b=4, a=0)  # The name of the arguments are the same as in the function parameter
+
+# arbitrary positional arguments, are used for when you don't know the exact amount of arguments to pass into a function
+"""
+def f(a=128, b=2, *args, **kwargs):  # To create an arbitrary positional argument put a star * before the name of the argument
+    print("a: %d" % (a))
+    print("b: %d" % (b))
+    print("args:", args)
+    for key, value in kwargs.items():
+        print("%s is %s" % (key, value))
+    print()
+"""
+f(1, 2, 3, 4, 5)
+
+# arbitrary keyword arguments can be create by putting 2 stars ** before the name of the argument. And are used for when you don't know the correct amount of keyword arguments to pass into a Function, and the argument will be a dictionary
+f(cat="animal", dog="animal", cheese="food")
+
+# Use the return keyword to return a value from a Function and it can return more than one value
+def func():
+    return 1, 2, 3
+
+
+a = func()
+print("A: ", a)
+
+# E.g of using a function:
+def fibs(num):
+    result = [0, 1]
+    for i in range(2, num):
+        a = result[i - 1] + result[i - 2]
+        result.append(a)
+    return result
+
+
+print(fibs(5))
+
+### Anonymous Function
+# The lambda expression can be used to create an anonymous function, and the lambda holds an unamed function object that behaves like the following:
+# def(parameters):
+# Return expression
+# Basically it will always return a value of an expression (Like arrow functions in JavaScript)
+a = lambda x, y: x + y
+print(a(1, 2))
+
+### Higher-order Function
+# Higher-order Function is a function that has another function inside of it (like it accept a function as argument), or it returns a Function
+
+# zip(obj, obj) function: joins 2 sequences together
+a = [1, 2, 3]
+b = ["a", "b", "c"]
+for x in zip(a, b):
+    print(x)
+
+# map(function): will return a map object after applying the given function to each item of the given sequence
+print(*map(lambda x: x * x, [1, 2, 3]))
+
+# filter(function): filters the given sequence based on a function that tests each item in the sequence to be true of false
+print(*filter(lambda x: x % 2 == 1, [1, 2, 3]))
+
+# sorted(sequence, [function]): will return a sorted sequence, you may pass a function as the comparator for sorting
+print(sorted([("b", 2), ("a", 1), ("c", 3), ("d", 4)], key=lambda x: x[1]))
+
+###############################
+###### Object Oriented Programming === OOP
+# Is a programming paradigm that you wirte your code based on Objects, instead of function and logic. This is a more organized and manageble than other paradigm
+
+# Object is a collection of data (Variables) and Methods (Functions) that act on those data.
+
+# In OOP we need a way to create Objects programmatically from our code. And to do that we can use the Classes
+
+# Classes are like a blueprint, in which we can create new Objects based on the rules described on the Class. Basically is just a plan, and will not have the Data write already on it
+
+# All objects created from a Class are called Instances of that Class
+
+# An Instance is a new Object created from a Class with the described information. And this Instance will have Data
+
+# From a Class there can be created infinite Objects based on that Class descriptions and the Instances created from that Class can have different data from each other
+
+# 1. Abstraction: is like a blueprint for another class, and they have at least one abstract method.
+# An Abstract Method is a Method without any content.
+# We can create a set of methods that must be created within any child class built from the abstract class
+
+# 2. Encapsulation: is to keep the Properties and Methods private or hidden inside the Class, so that they can't be accessed from outisde. And to combine data and methods that act on those data within an Object
+
+# 3. Inheritance: makes the Properties ad Methods of a certain Class available to a child class, this allows us to reuse all the Properties and Methods of the Parent Class also on the child Class, but with the exclusive Properties on the Child too. This forms a hierarquy between Classes. You can define a class to inherit all the Methods and Data from another class
+##### Parent Class: the class being inherited from
+##### Child Class: The class that inherits from another class
+
+# 4. Polymorphism: is the ability of a CLass child to overwrite a Method inherited from a parent Class. And also the ability of an Object to have many forms, and it can be used in:
+#### Polymorphism with functions
+#### Polymorphism with classes
+#### Polymorphism with inheritance
+
+# Encapsulation is used all the time
+
+# Polymorphism === many shapes
+
+# To overwrite a Method simply write the name of the Method and then add what you need to change
+
+# E.g: create a class that simuates a dog
+class Dog:
+    # The __init__ Function is called when the class is created
+    def __init__(
+        self,
+        name,
+        age,  # The name and age are the information you're going to add when instantiating
+    ):  # The self keyword means that will point to the instance/object created from this class, and NOT the class itself
+        self.name = name
+        self.age = age
+
+    def sit(self):  # This is a Method, basically a Function inside of a Class
+        print(self.name.title() + " is now sitting")
+
+    def run(self):
+        print(self.name.title() + " is now running")
+
+
+# Instantiation (Creating a new object based on a class)
+my_dog = Dog("Husky", 3)  # You need to pass the 2 arguments to create the new Object
+my_dog.sit()  # The new object intantiated will have access to all Methods created on the Class
+my_dog.run()
+
+# You can add new data to an Instantiated object, by simply putting the name of the object, and then a dot . and after that the new data, you can assign a value to this new data too.
+my_dog.food = "Cat Food"
+print(my_dog.food)
+
+# If you redefine a class, you will overwrite the old class
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+        print("%s has been created" % (self.name))
+
+
+my_dog = Dog("Goodog")
+
+
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+    # The __str__ Method can modify the executed code when an object is being printed
+    def __str__(
+        self,
+    ):  # When the object is being printed by the print() Method, this Function is automatically called
+        return "dog name: " + self.name
+
+
+my_dog = Dog("Goodog")
+print(my_dog)
+
+##### Encapsulation
+# You can use it to hide the values of data inside of a class, preventing access from outside of the class. These are the private methods and private data.
+# To create a private methods and private data, simply put 2 underscores __ before the name of the data
+# The data that you can access from outside the class are called public methods and public data
+class SimpleCounter:
+    __secretCount = 0  # Private variable
+    publicCount = 0  # Public variable
+
+    def count(self):
+        self.__secretCount += 100
+        print("Inside Class Private Method: ", self.__secretCount)
+
+
+counter = SimpleCounter()
+counter.count()  # Calling private Method that is inside the counter object
+print("Outside Class Public Method: ", counter.publicCount)
+
+# print("Outside Class Private Method: ", counter.__secretCount)  # Cannot access private variable directly
+
+#### Inheritance
+# Allows us to make a class inherit all the data and methods from another class
+class Parent:  # Parent Class
+    parentAttr = 100
+
+    def __init__(self):
+        print("Instantiating Parent")
+
+    def parentMethod(self):
+        print("Parent Method")
+
+    def setAttr(self, attr):
+        Parent.parentAttr = attr
+
+    def getAttr(self):
+        print("Parent Attribute: ", Parent.parentAttr)
+
+
+# To create a child class, simply put the name of the parent class inside the ()
+class Child(Parent):  # Child Class
+    def __init__(self):
+        print("Instantiating Child")
+
+    def childMethod(self):
+        print("Child Method")
+
+    def getAttr(self):
+        super().getAttr()  # The super() Method is pointing to the parent Class
+        print("Child says hello!")
+
+
+c = Child()  # Instantiate Child
+c.childMethod()  # Call child method
+c.parentMethod()  # Call parent method
+c.setAttr(200)  # Set attribute (Parent Method)
+c.getAttr()  # Call attribute (Parent Method)
+
+# REMEMBER: The child class always overwrite the data in the parent class
+
+c.childMethod()  # Call child method
+
+##### Abstraction
+# Is like a blueprint for another class, and they have at least one abstract method.
+# An Abstract Method is a Method without any content.
+# We can create a set of methods that must be created within any child class built from the abstract class
+# Abstraction is used to handle compexity by hiding details from the user.
+
+# To use abstract classes, you need to import the ABC module
+from abc import ABC, abstractmethod
+
+# To create an Abstract class, you need to inherit the ABC class to this new class. Basically, you put ABC in the ()
+class Animal(ABC):
+    @abstractmethod  # and to create an abstract method, you need to add @abstractmethod above the method
+    def eats_grass(
+        self,
+    ):  # All child classes that inherits this class will need to overrite all data on the abstract method
+        pass
+
+    def is_animal(self):
+        return True
+
+
+class Cat(Animal):
+    def __init__(self):
+        print("miew~~")
+
+    # Overriting abstract method
+    def eats_grass(self):
+        return False
+
+
+miew = Cat()
+print(miew.is_animal())
+print(miew.eats_grass())
+
+##### Polymorphism
+# Is the ability of a CLass child to overwrite a Method inherited from a parent Class. And also the ability of an Object to have many forms
+#### Polymorphism with functions
+print(len("Hello Python!"))
+print(len([1, 2, 3, 4, 5]))
+
+#### Polymorphism with classes and inheritance
+class Animal:
+    def sound(self):
+        pass
+
+
+class Cat(Animal):
+    def sound(self):
+        print("miew")
+
+
+class Bird(Animal):
+    def sound(self):
+        print("jiujiujiu")
+
+
+class Fish(Animal):
+    def sound(self):  # This is also because of polymorphyms
+        print("...")
+
+
+kitty = Cat()
+petty = Bird()
+jelly = Fish()
+my_pets = [kitty, petty, jelly]
+
+for x in my_pets:
+    x.sound()  # This for loop works because of polymorphism
+
+# The isinstance(obj, class) Method will tell if an object is an instance of a class
+print(isinstance(kitty, Cat))  # This is also because of polymorphism
+print(isinstance(kitty, Animal))  # This is also because of polymorphism

@@ -1,0 +1,701 @@
+///////////////////////////////////////////
+// Lecture: Python basics
+///////////////////////////////////////////
+##########################
+##### Regular Expressions
+# Regular Expression are a sequence of characters that define a search pattern
+# It's used to specify the pattner for the set of possible strings that we want to match
+# We can use it to modify a string or to split it apart in various ways
+
+# In Python, Regular Expression are like a small programming language embedded inside Python through the RE module
+
+# The RE module provide an interface to the regular expression engine allowing you to compile REs into objects and then perform matches with them.
+
+# Import RE module to use the Regular Expression
+import re
+from typing import Pattern, Text
+
+print(
+    re.match(
+        "www", "www.huawei.com"
+    ).span()  # The span() Method returns the position of a certain string
+)  # The match() Method search the string to match from the start of the text, and cannot search from the middle of the text
+
+print(
+    re.search("com", "www.huawei.com").span()
+)  # The search(match, str) Method will try to match the strings anywhere in the text
+
+# REMEMBER: Regular Expressions allows us to search with pattners
+# You can use Metacharacters (That are symbols) to represents different character pattenrs
+# E.g: . (dot) means any character, and * (star) means zero or more occurrences, now .* means any character repeated zero or more times
+line = "Cats are smarter than fish"
+searchObj = re.search(
+    r"(.*) are smarter than (.*)", line
+)  # The string inside the () is stored as a group, and you can access those group with the obj.group() Method
+if searchObj:
+    print("searchObj.group() : ", searchObj.group())  # This is the entire string
+    print("searchObj.group() : ", searchObj.group(1))  # This is the first group "Cats"
+    print("searchObj.group() : ", searchObj.group(2))  # This is the second group "Fish"
+else:
+    print("Nothing found!!")
+
+# You can also run the re.compile(pattern).search(text) to find a pattern on a string, is the same as re.search(pattern, text)
+pattern = re.compile(
+    r"\d+"
+)  # The \d means digit, and the + means one or more. This will match at least one digit
+n = pattern.match("one12twothree34four")  # Match from start with .match(text)
+print(n)
+
+# search(text) Method will match the first ocurence anywhere in the text
+m = pattern.search("one12twothree34four")
+print(m)
+print(m.group())
+
+phone = "2020-0101-000 # This is a phone number"
+# You can use the re.sub(match, replace, objectReplaced) Method to remove an part of the string and/or everything after this string
+num = re.sub(r"#.*", "", phone)  # This will remove the # and anything after it
+print("Phone number: ", num)
+
+# You can remove anything that is not a digit with \D. \D means anythin but a digit
+num = re.sub(r"\D", "", phone)
+print("Phone number: ", num)
+
+# Use the findall(pattern, text) Method to find all of the occurences that match the string
+text = "Tomorrow is 2022/2/31, today is 2022/2/30"
+num1 = re.findall(r"\d+", text)  # The \d+ means any digit
+num2 = re.findall(
+    r"[0-9]{2,5}", text
+)  # The [0-9] also means any digit, but from 0 to 9. And the {2,5} means the amount of digits in one number, basically means that will find 2 to 5 digits in one number
+print(num1)
+print(num2)
+
+# To find all the alphabets in the text
+s = re.findall(
+    r"[a-zA-Z]+", text
+)  # The [a-zA-Z] means the entire alphabet, and + means one or more. This will return the substrings that contains one or more alphabets
+print(s)
+
+# To find all the symbols in a text
+s = re.findall(
+    r"\W+", text
+)  # The \W means the symbols but removing the alphabet, numbers and underscore, and + means one or more. This will return the substrings
+print(s)
+
+# To find the alphabet and numbers
+s = re.findall(r"[a-zA-Z0-9]+", text)
+print(s)
+
+# Find an e-mail address
+text = "My email adress is : abc456@def.com"
+s = re.findall(r"[A-Za-z0-9]+@[A-Za-z0-9]+\.com", text)
+print(s)
+
+# Find Url
+text = "Python home page: https://www.python.org"
+s = re.findall(
+    r"https?://.*", text
+)  # The ? means one or zero, in this part the ? will either search for the s or not
+print(s)
+
+# You can use the Regular Expressions to search for HTML contents
+html = "aa<div>test1</div>bb<div>test2</div>cc "
+res = re.search(
+    "<div>.*</div>", html
+)  # This will search for all the div tags in the html
+print(res.group())
+
+html = "aa<div>test1</div>bb<div>test2</div>cc "
+res = re.search(
+    "<div>.*?</div>", html
+)  # This will search for first the div tag it find in the html
+print(res.group())
+
+#############################
+### File I/O operations
+# File are named locations used to store data. They are used to permanently store data in a non-volatile memory, like an HD
+# In python, you can use the following operations in a file:
+### Open file
+### Read or Write
+### Close the file
+
+#### Reading a file:
+# To read a file you can use:
+## open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)
+#### -file: a path-like object giving the pathname of the file to be opened
+#### -mode: describes the way in which the file will be used (e: read only, w: write only, a: append, r+: read and write, b*: opens file in binary mode)
+#### -encoding: spicify encoding
+
+# E.g: f = open("file_name","r",encoding="utf8")
+# OBS: If the file doesn't exist, Python will create a file automatically with that name.
+f = open("text.txt", "w", encoding="utf8")
+
+# To write into a file, we use the file.write(What_to_write) Method
+inputs = input("input: ")
+f.write(inputs)
+f.close()  # The file.close() Method will close the open file, and remember to close the file after finishing the operation, because the data will only be written when the file closes
+
+f = open("text.txt", "r")
+print(
+    f.read(6)
+)  # Use the file.read() Method to read the content of a file, you can pass as argument the amount of characters to read in the file from the current position (default is 0)
+print(
+    f.read()
+)  # If no argument is passed, Python will read from the current position to the end of the file
+f.close()
+
+f = open("text.txt", "a")  # To add more data to a file, use the "a" append mode
+f.write(" I appended more content!")
+f.close()
+
+f = open("text.txt", "r")
+print(f.read())
+f.close()
+
+# You can use the with Statement to open and read a file. After the code block of this Statement is finished, then the file is automatically closed
+with open("text1.txt", "w") as f:
+    f.write("Python is cool\nthis is a pen\nI like apple")
+with open("text1.txt", "r") as f:
+    print(f.read())
+
+# You can also read the file line by line, and to do this use the file.readline() Method
+with open("text1.txt", "r") as f:
+    line = f.readline()
+    print("Read one line: %s" % (line))
+
+    lines = f.readlines()  # You can get a list of line with the file.readlines() method
+    print(lines)
+
+################################
+### Execption
+## Erros are the problems in the program that will cause the program itself to stop the execution
+
+# There are 2 kinds of errors in Python:
+#### Syntax errors: or parsing errors happens when the syntax of the Language is not correctly followed
+# this is an invalid syntax
+
+#### Exceptions: can happen even if the syntax is correct, it may cause an error when an attempt is made to execute it, they are found during execution. We can catch an exception by try-except statement
+# Python can't compute 1/0
+# print(1 / 0) # Error
+
+##### Try-except statement
+try:
+    print(
+        1 / 0
+    )  ### Only if the code in the Try block cause an exception, then the except block will be executed
+except Exception as e:
+    print(e)
+finally:  ### The finally block is always executed in the end
+    print("Python is cool")
+
+# You can create multiple Except blocks
+a = input()
+try:
+    b = [i for i in range(int(a))]  # If a<5, there will be an error
+    print(b[4] / 0)
+except ZeroDivisionError:
+    print("Division by zero")
+except ValueError:
+    print("ValueError")
+except IndexError:
+    print("List index out of range")
+finally:
+    print("Python is cool")
+
+# You can define your own exception, to do that you need to inherit the exception class
+class MyError(Exception):
+    def __init__(self, ErrorInfo):
+        super().__init__(self)  # Initialize parent class
+        self.errorinfo = ErrorInfo
+
+    def __str__(self):
+        return self.errorinfo
+
+
+# To raise/throw an error manually, use the keyword raise
+## raise MyError("My exception")
+
+# You can use the assert Statement to check if an expression is True, and if it's not true, then an assertion error will be throw
+def func(a, b):
+    # If not a==b, Python will throw an exception
+    assert a == b
+
+
+# func(1, 2)
+
+################
+######Generator and Decorator
+### Generator functions are a special kind of function that return a lazy iterator
+# Lazy Iterator are objects that you can loop ober like a list/array. But, the lazy iterators doesn't store their content in memory
+# Generators generate the element when you iterate over it
+
+import collections as c
+
+# We can convert iterable objects into iterators
+# Use the isinstance() Method to check if an object is iterable
+print(isinstance([], c.Iterable))
+print(isinstance("abc", c.Iterable))
+print(isinstance(100, c.Iterable))
+
+# You can create an iterator by using the iter funcion
+l = [1, 2, 3, 4, 5]
+l_iter = iter(l)
+print(type(l_iter))
+
+print(
+    next(l_iter)
+)  # The next(iterator) Method will get us to the next element in the iterator
+
+print(next(l_iter))
+
+# With a generator, you can define how each element of the iterator is calculated
+
+# E.g: generator for a fibonacci sequence
+def fib(n):
+    current = 0
+    num1, num2 = 0, 1
+    while current < n:
+        num = num1
+        num1, num2 = num2, num1 + num2
+        current += 1
+        yield num  # Use the keyword yield, instead of return, when creating a generator
+    yield "done"
+
+
+g = fib(5)
+
+for x in g:
+    print(x)
+
+# Another way to create a generator, by using list comprehension
+
+g = (x * 2 for x in range(5))
+# Basically, wa're making a generator based on a list
+for x in g:
+    print(x)
+
+### Decorators can add fuctionality to an existing code without modifying its structure.
+# A Decorator is a callable object that returns a callable object.
+
+# Any object which implements the special __call__() method is callable
+
+# A decorator takes in a fuction, add some functionality and returns the function back.
+
+# You can add multiple decorators on top of each other
+def decorate(func):
+    def decorated():
+        print("I got decorated")
+        func()
+
+    return decorated
+
+
+@decorate  # The @Name_Of_Decorator is adding the decorator to the function bellow it
+def plain():
+    print("I am plain")
+
+
+plain()
+
+################
+###### Common standard libraries
+# The Python Standard Library is a collection of modules accessible to a Python program to simplify the programming process and removing the need to rewrite commonly used commands.
+
+# This library is already accessible from Python, and does not require any aditional instalation
+# A list of the Standard Library modules can be found at: https://docs.python.org/3/library/
+
+# Now Third-party modules needs to be installed for it to be used.
+
+## Sys Module:
+# The sys module provides information about constants, functions and methods of the Python interpreter
+# In a nutshell, it it porvide information about the Python provider
+# You can have access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter
+import sys
+
+"""
+for i in range(100):
+    print(i)
+    if i == 5:
+        sys.exit(
+            0
+        )  # The sys.exit([0]) Method will exit the program, n=0 means successful termination, n!=0 means an abnormal termination happen
+"""
+
+# sys.path: returns a list of strings that specifies the search path for modules
+print(sys.path)
+
+# sys.platform: used to check the system platform
+print(sys.platform)
+
+## OS and time modules, these 2 belongs to the Generic Operating System Services.
+# The modules of Generic Operating System Services provides interfaces to operating system features that are available on mosts operating systems.
+
+# The OS module is a portable access to operating system specific features
+import os
+
+# os.getpid() get the current process id
+print("process id: ", os.getpid())
+
+# os.getppid() get the process ID (PID) of the calling process
+print("parent process id: ", os.getppid())
+
+# os.getcwd() get the current directory
+cwd = os.getcwd()
+print("current directory: ", cwd)
+
+# os.chdir(path) change current directory
+# os.chdir("C:/")
+print("new directory: ", os.getcwd())
+
+# os.listdir(path) get a list containing the names of the entries in the directory given by path
+print("All the files: ", os.listdir(cwd))
+
+# os.walk() prints all the file names under the current directory, and the subdirectories
+for root, dirs, files in os.walk(cwd):
+    for name in files:
+        print(
+            os.path.join(root, name)
+        )  # You can put the path(root) and the file name together with os.path.join
+    for name in dirs:
+        print(os.path.join(root, name))
+# The root is the file location. The file contain the file names, and the dirs contains the subdirectories
+
+# In os.path module there are also some usefull functions on pathnames:
+# os.path.abspath(path): get the absolute pathname
+print("Absolute pathname: ", os.path.abspath("text.txt"))
+
+# os.path.exists(path): return true if path exists, else return false
+print("Exists or not: ", os.path.exists("text.txt"))
+
+# os.path.getsize(path): return the size of path
+print("Size: ", os.path.getsize("text.txt"))
+
+# os.path.isfile(path): determine if path is a file
+print("Is file: ", os.path.isfile("text.txt"))
+
+# os.path.isdir(path): determine if path is a folder
+print("Is folder: ", os.path.isdir("text.txt"))
+
+##### The time module give us functions for manupulating clock time
+import time
+
+# time.time() get current timestamp
+time_now = time.time()
+print("Time stamp: ", time_now)
+# The timestamp is the number of seconds between the moment the timestamp is generated and january 1st 1979 at UTC
+
+# time.localtime() get local time, but it is not human readable
+localtime = time.localtime(time_now)
+print("Local time: ", localtime)
+
+# time.asctime() convert a tuple or struct_time representing a time to a string that is human readable
+localtime = time.asctime(localtime)
+print("Local Time: ", localtime)
+
+# time.strftime(format[, t]) converts a tuple or struct_time into a string formated the way you want
+print("Local time: ", time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+
+##############################
+###### Data Structure
+## Linked list
+# A linked list is a sequence of data elements, which are connected together via links.
+# Python list use a contiguous memory block to store references to their data, and linked list
+
+### Singly Linked Lists
+# A singly linked list is a type of linked list that is unidirectional, which means, it can be traversed in only one direction from head to the tail.
+## Steps to create a Singly Linked List
+# 1 - Define the basic element of the linked list, being the node:
+# A node contains data and a reference to the next node
+class Node:
+    # constructor
+    def __init__(self, data=None, next_node=None):
+        self.__data = data
+        self.__next_node = next_node
+
+    # get data
+    def get_data(self):
+        return self.__data
+
+    # get next node
+    def get_next(self):
+        return self.__next_node
+
+    # set next node
+    def set_next(self, new_next):
+        self.__next_node = new_next
+
+
+# 2 - With the node defined, you can create your list:
+class SinglyLinkedList:
+    # constructor
+    def __init__(self):
+        self.__head = Node(
+            "__head__"
+        )  # The head node taht represents the head of the list is created, but it doesn't contain any data
+
+    # get the first node that contains the specified data
+    def get_node(self, data):
+        current = self.__head
+        # go through the list until it finds a match, or reach the end of the lis
+        while current:
+            if current.get_data() == data:
+                return current
+            else:
+                current = current.get_next()
+        return None
+
+    # delete the first node that contains the specified data
+    def delete(self, data):
+        current = self.__head
+        previous = None
+        # go through the list until it finds a match, or reach the end of the lis
+        while current:
+            if current.get_data() == data:
+                previous.set_next(current.get_next())
+                break
+            else:
+                previous = current
+                current = current.get_next()
+
+    # append new node to the end of the list
+    def append(self, data):
+        current = self.__head
+        # go to the last node in the list
+        while current.get_next():
+            current = current.get_next()
+            # append at the end of the list
+        current.set_next(Node(data))
+
+    # get the number of nodes in the list
+    def size(self):
+        current = self.__head
+        count = 0
+        while current:
+            count += 1
+            current = current.get_next()
+        return count - 1
+
+    def print_list(self):
+        current = self.__head.get_next()
+        while current:
+            print(current.get_data())
+            current = current.get_next()
+
+
+# 3 - Test the list
+print(
+    """######################################
+### Singly Linked List"""
+)
+# create list
+l = SinglyLinkedList()
+
+l.append("cat")
+l.print_list()
+
+# append
+l.append("dog")
+l.append("fish")
+l.append("bird")
+l.print_list()
+
+# get_node
+node = l.get_node("fish")
+print(node.get_data())
+
+# delete
+l.delete("fish")
+l.print_list()
+
+# size
+l.size()
+
+### Doubly Linked Lists
+# Doubly linked list is a type of linked list in which each node apart from storing its data has two links.
+
+# The first link points to the previous node in the list.
+# The second link points to the next node in the list.
+# The first node of the list has its previous link pointing to NULL, and the last node of the list has its next node pointing to NULL.
+
+# To create a Duoubly Linked List, use the following steps:
+# 1 - Define the elements that form the list:
+# define the basic element that forms the list.
+class Node:
+    # constructor
+    def __init__(self, data=None, next_node=None, prev_node=None):
+        self.__data = data
+        self.__next_node = next_node
+        self.__prev_node = prev_node  # This is the reference for the previous node
+
+    # get data
+    def get_data(self):
+        return self.__data
+
+    # get next node
+    def get_next(self):
+        return self.__next_node
+
+    # set next node
+    def set_next(self, new_next):
+        self.__next_node = new_next
+
+    # get prev node
+    def get_prev(self):
+        return self.__prev_node
+
+    # set prev node
+    def set_prev(self, new_prev):
+        self.__prev_node = new_prev
+
+
+# 2 - Define the List:
+class DoublyLinkedList:
+    # constructor
+    def __init__(self):
+        head = Node("__head__")
+        self.__head = head
+        self.__tail = (
+            head  # It is good to know the tail of the node in Doubly linked list
+        )
+
+    # get the first node that contains the specified data
+    def get_node(self, data):
+        current = self.__head
+        # go through the list until it finds a match, or reach the end of the lis
+        while current:
+            if current.get_data() == data:
+                return current
+            else:
+                current = current.get_next()
+        return None
+
+    # append new node to the end of the list
+    def append(self, data):
+        new_tail = Node(data)
+        self.__tail.set_next(new_tail)
+        new_tail.set_prev(self.__tail)
+        self.__tail = new_tail
+
+    # delete the first node that contains the specified data
+    def delete(self, data):
+        del_node = self.get_node(data)
+        if del_node:
+            prev_node = del_node.get_prev()
+            next_node = del_node.get_next()
+            prev_node.set_next(next_node)
+        if next_node:
+            next_node.set_prev(prev_node)
+        else:
+            self.__tail = prev_node
+
+    # get the number of nodes in the list
+    def size(self):
+        current = self.__head
+        count = 0
+        while current:
+            count += 1
+            current = current.get_next()
+        return count - 1
+
+    def print_list(self):
+        current = self.__head.get_next()
+        while current:
+            print(current.get_data())
+            current = current.get_next()
+
+    def print_backwards(self):
+        current = self.__tail
+        while current.get_prev():
+            print(current.get_data())
+            current = current.get_prev()
+
+
+# 3 - Test the list:
+
+print(
+    """######################################
+### Doubly Linked List"""
+)
+
+# create list
+l = DoublyLinkedList()
+
+# append
+l.append("cat")
+l.append("dog")
+l.append("fish")
+l.append("bird")
+l.print_list()
+
+l.print_backwards()
+
+# delete
+l.delete("cat")
+l.print_list()
+
+# size
+l.size()
+
+### Binary Tree
+# A binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child. It is very usefull in binary search, binary space partition or in an implementation of heap
+# Traversal is a process of visiting all the nodes of a tree. There are three ways which we use to traverse a tree:
+### In-order Traversal: You will always traverse the left node/subnode in the tree until the left is finished, but after it finishes, it will go to the right node/subnode on the tree, and if there is no node on both side, the value printed will be the parent node of those nodes...
+### Pre-order Traversal: You first print the current node, and then go left and then right
+### Post-order Traversal: You will always traverse the left node/subnode in the tree until the left is finished, but after it finishes, it will go to the right node/subnode on the tree, after that it will go back into the parent Node, and if the parent node has 2 subnode and the left has been completed, it will no print this parent node, but it will go to the right and then after finishes the right it will print the parent Node
+
+# Creating a Binary Tree:
+# 1 - Define the Tree node
+# BinaryTreeNode
+class BinaryTreeNode(object):
+    def __init__(self):
+        self.data = "#"
+        self.leftChild = None
+        self.rightChild = None
+
+
+# 2 - You need to define the tree
+class BinaryTree(object):
+    # create binary tree
+    def createBinaryTree(self, Root):
+        data = input("==>")
+        if data == "#":  # The # will basically end the binary node
+            Root = None
+        else:
+            Root.data = data
+            Root.leftChild = BinaryTreeNode()
+            self.createBinaryTree(Root.leftChild)
+            Root.rightChild = BinaryTreeNode()
+            self.createBinaryTree(Root.rightChild)
+
+    def preOrder(self, Root):
+        if Root is not None:
+            self.visitBinaryTreeNode(Root)
+            self.preOrder(Root.leftChild)
+            self.preOrder(Root.rightChild)
+
+    def inOrder(self, Root):
+        if Root is not None:
+            self.inOrder(Root.leftChild)
+            self.visitBinaryTreeNode(Root)
+            self.inOrder(Root.rightChild)
+
+    def postOrder(self, Root):
+        if Root is not None:
+            self.postOrder(Root.leftChild)
+            self.postOrder(Root.rightChild)
+            self.visitBinaryTreeNode(Root)
+
+    def visitBinaryTreeNode(self, BinaryTreeNode):
+        # pound sign (#) means empty node.
+        if BinaryTreeNode.data is not "#":
+            print(BinaryTreeNode.data, end="->")
+
+
+bTN = BinaryTreeNode()
+bT = BinaryTree()
+bT.createBinaryTree(bTN)
+print("pre_order: ")
+bT.preOrder(bTN)
+print("\nin_order: ")
+bT.inOrder(bTN)
+print("\npost_order: ")
+bT.postOrder(bTN)

@@ -1,0 +1,185 @@
+#######################################
+##### Third-Party Libraries
+## Usefull third-party libraries:
+# Numpy
+# Pandas
+# Matplotlib
+# Scipy
+# Scikit-Learn
+
+## To install a library run the command: pip install LIBRARY_NAME
+
+######################################
+#### NumPy
+# NumPy (Numerical Python) is used in almost every field of science and engineering
+# https://numpy.org/
+
+# The core of the NumPy package, is the ndarray object, a homogeneous n-dimensional array object, with methods to efficiently operate on it.
+
+# NumPy is partially written in Python, but most of the parts that require fast computation are written in C or C++.
+
+# The NumPy API is used extensively in Pandas, SciPy, Matplotlib, scikit-learn, scikit-image and most other data science and scientific Python packages.
+
+# NumPy can be used to perform a wide variety of mathematicaloperations on arrays. It adds powerful data structures to Python that guarantee efficient calculations with arrays and matrices.
+
+# Python lists are slow to process. NumPy ndarray is up to 50x faster than traditional Python lists.
+
+# NumPy supplies an enormous library of high-level mathematicalfunctions that operate on ndarrays.
+
+# NumPy’s main object is the homogeneous multidimensional array. It is a table of elements (usually numbers), all of the same type, indexed by a tuple of non-negative integers. In NumPy dimensions are called axes.
+
+import numpy as np
+from numpy.lib.shape_base import _apply_along_axis_dispatcher, apply_along_axis
+
+a = np.array([1, 2, 3, 4, 5])  # Create a one-dimensional array
+print("One-dimensional array: ", a)
+
+a = np.array([[1, 2, 3], [4, 5, 6]])  # Create a multi-dimensional array
+print("One-dimensional array: ", a)
+
+c = np.zeros([2, 2])
+print("Array full of zeros: ", c)
+
+d = np.ones([2, 2])
+print("Array full of ones: ", d)
+
+e = np.empty([2, 2])
+print("Array whose initial content is random: ", e)
+
+### To use Nympy Matrix, you need to import numpy.matlib
+import numpy.matlib
+
+#################################################
+######### Pandas
+
+### Pandas documentation: https://pandas.pydata.org/
+
+# Pandas is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language.
+
+# Provides high-level building block for doing practical data analysis in Python.
+
+# Powerful and flexible open source data analysis tool.
+
+# BDS-Licensed is a family of permissive free software licenses imposing minimal restrictions on use and distribution of covered software
+
+# Pandas is build on Top of Numpy
+
+### Some features of Pandas are:
+# Accessible to everyone
+# Free for users to use and modify
+# Flexible
+# Powerful
+# Easy to use
+# Fast
+
+### There are three main data structures in pandas:
+# Series
+# DataFrame
+# Panel
+
+# The most widely used pandas data structure is DataFrame.
+
+### Series is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.). The axis labels are collectively referred to as the index.
+# Series is ndarray-like.
+# Series is dict-like.
+
+### DataFrame is a two-dimensional labeled data structure with columns of potentially different types.
+
+# Like Series, DataFrame accepts many different kinds of input:
+# Dict of 1D ndarrays, lists, dicts, or Series
+# 2-D numpy.ndarray
+# Structured or record ndarray
+# A Series
+# Another DataFrame
+
+### A panel is a 3D container of data.
+
+# The three axes of a panel are:
+# items − axis 0, each item corresponds to a DataFrame contained inside.
+# major_axis − axis 1, it is the index (rows) of each of the DataFrames.
+# minor_axis − axis 2, it is the columns of each of the DataFrames.
+
+##### To install pandas use the command: pip install pandas
+## To use Pandas, you need to import Pandas and Numpy
+import pandas as pd
+import numpy as np
+
+#################################################
+######### Matplotlib
+
+### Matplotlib documentation: https://matplotlib.org/
+
+# Matplotlib is a comprehensive library for creating static, animated, and interactive visualizations in Python.
+
+# Matplotlib is a library for making plots of arrays in Python.
+
+# Although Matplotlib is written primarily in pure Python, it makes heavy use of NumPy and other extension code to provide good performance.
+
+# Matplotlib is designed with the philosophy that you should be able to create simple plots with just a few commands.
+
+##### To install matplotlib use the command: pip install matplotlib
+# To use Matplotlib, you need to import the following libraries: numpy, pandas and matplotlib.pyplot
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+#################################################
+######### Scipy
+
+### Scipy documentation: https://www.scipy.org/
+
+# SciPy: Scientific Python, is the Scientific computing tools for Python.
+
+# SciPy is a Python-based ecosystem of open-source software for mathematics, science, and engineering.
+
+### CORE PACKAGES:
+# NumPy # Pandas
+# SciPy library # IPython
+# Matplotlib # SymPy
+
+#### Core Packages, explained:
+
+# NumPy, the fundamental package for numerical computation. It defines the numerical array and matrix types and basic operations on them.
+
+# The SciPy library, a collection of numerical algorithms and domain-specific toolboxes, including signal processing, optimization, statistics, and much more.
+
+# Matplotlib, a mature and popular plotting package that provides publication- quality 2-D plotting, as well as rudimentary 3-D plotting.
+
+# pandas, providing high-performance, easy-to-use data structures.
+
+# IPython, a rich interactive interface, letting you quickly process data and test ideas.
+
+# SymPy, for symbolic mathematics and computer algebra.
+
+# The SciPy library is one of the core packages that make up the SciPy stack. It provides many user-friendly and efficient numerical routines, such as routines for numerical integration, interpolation, optimization, linear algebra, and statistics.
+
+# SciPy is a collection of mathematical algorithms and convenience functions built on the NumPy extension of Python. It adds significant power to the interactive Python session by providing the user with high-level commands and classes for manipulating and visualizing data.
+
+##### To install SciPy use the command: pip install scipy
+
+#################################################
+######### Scikit-Learn
+
+### Scipy documentation: https://scikit-learn.org/stable/
+
+# Scikit-learn is an open source machine learning library that supports numerous machine learning algorithms. It also provides various tools for model fitting, data preprocessing, model selection and evaluation, and many other utilities.
+
+### Fitting and predicting: estimator basics
+#  Scikit-learn provides dozens of built-in machine learning algorithms and models, called estimators. Each estimator can be fitted to some data using its fit method.
+
+# Transformers and pre-processors
+# Machine learning workflows are often composed of different parts. A typical pipeline consists of a pre-processing step that transforms or imputes the data, and a final predictor that predicts target values.
+
+###Pipelines: chaining pre-processors and estimators
+# Transformers and estimators (predictors) can be combined together into a Pipeline. The pipeline offers the same API as a regular estimator: it can be fitted and used for prediction with fit and predict.
+# Using a pipeline will also prevent us from data leakage, i.e. disclosing some testing data in your training data.
+
+###Model evaluation
+# Fitting a model to some data does not entail that it will predict well on unseen data. This needs to be directly evaluated. Scikit-learn provides many other tools for model evaluation, in particular for cross-validation.
+
+### Automatic parameter searches
+# All estimators have parameters (often called hyper-parameters) that can be tuned. The generalization accuracy of an estimator often critically depends on a few parameters.
+
+# Quite often, it is not clear what the exact values of these parameters should be since they depend on the data at hand. Scikit-learn provides tools to automatically find the best parameter combinations (via cross-validation).
+
+##### To install SciPy use the command: pip install scikit-learn
